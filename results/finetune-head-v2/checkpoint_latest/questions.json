@@ -1,0 +1,23 @@
+{
+  "evidence_sufficient": {
+    "type": "noul",
+    "instructions": "\u8bc1\u636e\u662f\u5426\u8db3\u4ee5\u5224\u65ad\u9a8c\u6536\u9879\u5df2\u6ee1\u8db3\uff08\u771f\u5b9e\u4ee3\u7801\u3001\u6d4b\u8bd5\u6216\u547d\u4ee4\u8f93\u51fa\uff0c\u800c\u975e\u7a7a\u6d1e\u58f0\u79f0\uff09\uff1f",
+    "criteria": {
+      "true": "\u8bc1\u636e\u4e3a\u7a7a\u3001\u542b\u7cca\u6216\u4ec5\u6709\u58f0\u79f0",
+      "false": "\u5b58\u5728\u5177\u4f53\u8bc1\u636e"
+    },
+    "fail": 0.9,
+    "warn": 0.6
+  },
+  "verdict": {
+    "type": "choice",
+    "instructions": "\u7ed9\u5b9a\u8bc1\u636e\uff0c\u6b64\u4e8b\u9879\u7684\u5b8c\u6210\u6027\u8d28\u662f\u4ec0\u4e48\uff1f",
+    "criteria": {
+      "all_done": "\u6bcf\u4e2a\u9a8c\u6536\u9879\u90fd\u88ab\u8bc1\u636e\u8bc1\u660e",
+      "some_pending": "\u81f3\u5c11\u4e00\u9879\u672a\u88ab\u8bc1\u660e",
+      "not_started": "\u8bc1\u636e\u4e0e\u9a8c\u6536\u9879\u5b8c\u5168\u4e0d\u5bf9\u5e94"
+    },
+    "fail": 0.85,
+    "warn": 0.5
+  }
+}

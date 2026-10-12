@@ -39,8 +39,9 @@ training itself run on the laya toolchain (`train_cli.py` SFT head,
 ## Status
 
 - [x] repo + split tooling
-- [ ] seed dataset (distillation from typed-decisions + multilingual)
-- [ ] SFT head on Kaggle
-- [ ] RLCD calibration
+- [x] seed dataset: 58 distilled states (28 en repo diffs + 30 zh)
+- [x] head-only RLCD stage (local GPU) + held-out test eval
+- [ ] full encoder RLCD (needs >=16GB GPU -- Kaggle 2xT4)
+- [ ] scale dataset to thousands of states
 - [ ] temperature refit on validation (zh ECE target < 0.15)
 - [ ] final test eval (accuracy / ECE / flip rate)

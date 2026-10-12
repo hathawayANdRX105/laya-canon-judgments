@@ -92,6 +92,31 @@ laya-evals 的读法）：
 验收通过后才注册进 laya-serve（`LAYA_EXTRA_MODELS`），路由表加语言→新模型映射，
 gate 的 `JEV_MODEL=auto` 渐进切到新 checkpoint；不过关则留在实验区，gate 继续
 走现有三 checkpoint。
+
+## 7.1 首轮结果（2026-10-13）
+
+管线端到端跑通：58 条蒸馏数据（28 条 en 真实 commit diff + 10 条中文
+工单态 + 20 条仓库内中文混合 diff）→ 分组感知 46/6/6 划分 →
+head-only RLCD（`freeze_encoder=True`，本机 GTX 1660 Ti）→
+held-out test 验收（`results/eval-test-v1.json`）：
+
+| 指标 | base multilingual | head-only fine-tuned |
+|---|---|---|
+| accuracy (choice/noul) | 1.0 | 1.0 / 1.0 |
+| ECE | 0.271 | 0.361（变差） |
+| Brier | 0.090 | 0.146（变差） |
+
+结论：**不替换现有设置**——精度无回归但校准倒退，83 条训练项远
+不足以超越预训练 head（预期内）；本轮价值是管线种子验证。
+
+硬件边界：全量 RLCD（解冻 encoder）在 6GB 显存 OOM——fp32 参数 +
+梯度 + AdamW 态 ≈ 4.5GB 地板，激活再叠加即超 5.63GB；该模型官方
+用 2xT4（32GB）训练。**阶段 2（解冻 encoder + 全量 RLCD）在
+Kaggle 2xT4 上跑**（§6），本机只做 head-only 与数据管线。
+
+多语言数据注意：同一 qid 的 en/zh question 定义（instructions /
+criteria 文本）冲突时预处理器保留首个——正式数据集应按 qid 规范化
+定义（内部形式 type + 选项键与语言无关，文本差异不进训练输入）。
 ## 6. Kaggle 免费 GPU 使用法
 
 - **额度**：30 GPU-h/周（2xT4 或 P100）；TPU v3-8 亦有；CPU 无周配额
