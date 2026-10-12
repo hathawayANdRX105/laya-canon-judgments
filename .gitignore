@@ -1,0 +1,9 @@
+# raw data and generated artifacts
+data/raw/
+data/rows.jsonl
+data/splits/*.jsonl
+*.pt
+*.safetensors
+checkpoints/
+results/*.json
+__pycache__/
