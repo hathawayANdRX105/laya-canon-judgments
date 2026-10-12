@@ -61,7 +61,8 @@ def gold_from_answers(questions: dict, answers: dict) -> tuple[dict, dict]:
         q = questions.get(qid, {})
         if q.get("type") == "noul" or ans.get("type") == "noul":
             p = float(ans.get("noul", 0.0))
-            gold[qid] = {"true": round(p, 6), "false": round(1.0 - p, 6)}
+            gold[qid] = {"probabilities": {
+                "true": round(p, 6), "false": round(1.0 - p, 6)}}
             expected[qid] = bool(p >= 0.5)
         elif q.get("type") == "choice" or ans.get("type") == "choice":
             probs = ans.get("probabilities", {})
