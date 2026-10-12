@@ -1,0 +1,11 @@
+{
+  "title": "train",
+  "id": "hathawayandrx105/train",
+  "code_file": "train.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "machine_shape": "GPU_T4x2"
+}
