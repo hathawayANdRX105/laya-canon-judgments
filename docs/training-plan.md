@@ -130,8 +130,41 @@ criteria 文本）冲突时预处理器保留首个——正式数据集应按 q
      `pip install kaggle` 后 `kaggle datasets upload`
   4. 环境：laya 仓库 `pip install -e .`；checkpoint 从 HF 下载
      （Kaggle 直连 HF）
-- **分工**：本机 CPU 做数据准备 + SFT head-only；Kaggle GPU 做 encoder
-  解冻训练 + RLCD（30h/周足够 2–3 轮完整实验）
+- **分工**：本机 CPU 做数据准备（head-only 已跑完，见
+  §7.1；本机 GPU 坏——全部 GPU 训练上云）；Kaggle GPU
+  做 encoder 解冻训练 + RLCD（30h/周足够 2–3 轮完整实验）
+
+### 6.1 无头执行（CLI）
+
+官方 `kaggle` CLI **没有 run 命令**；但 `kernels push` 会
+触发执行——无头模式即 push→poll→pull：
+
+```bash
+kaggle kernels push -p cloud/kaggle/   # 上传即开跑
+kaggle kernels status <user>/train      # 轮询直到 complete
+kaggle kernels output <user>/train -p out/   # 拉产物
+```
+
+- 开源封装 [kagglepipe](https://github.com/AdityaProCoder/kagglepipe)：
+  参数化 notebook 渲染 + push + 轮询 + 拉产物，一条命令
+  （papermill 参数在 `cloud/kaggle/train.ipynb` 首格）
+- GitHub Actions 同款：`workflow_dispatch` → `kaggle kernels push`
+- 认证：Kaggle Account → Create New API Token（`kaggle.json`）
+
+### 6.2 替代免费平台（CLI 优先）
+
+| 平台 | 免费额度 | CLI/API | 备注 |
+|---|---|---|---|
+| **Modal** | $30/月额度 ≈ 50 T4-h | `modal run cloud/modal_train.py`（原生 CLI） | 最适合脚本式训练；GPU 在装饰器固定（T4→A10G 改一处） |
+| **Lightning AI** | ~80 GPU-h/月，无需信用卡 | REST API + Python SDK | PyTorch Lightning 官方云 |
+| Saturn Cloud | 30 GPU-h/月 T4（历史值） | Python SDK | 转向 control plane 后免费层存疑 |
+| Paperspace | — | `gradient` CLI | DigitalOcean 收购后免费层存疑 |
+| Vast.ai | 无免费额度 | `vast` CLI | 便宜（约 $0.1–0.3/h）但非免费 |
+
+**推荐**：脚本形态首选 **Modal**（`modal run` 直跑 laya 驱动，
+runner 已备好 `cloud/modal_train.py`）；要最大免费额度且需
+2xT4 用 **Kaggle + kagglepipe**（notebook 已备好
+`cloud/kaggle/train.ipynb`）。
 
 ## 7. 与现有架构的关系
 
