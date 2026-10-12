@@ -1,0 +1,10 @@
+{"state_hash": "8ca366628c0aa5b4", "lang": "zh", "source": "synthetic-zh", "state": "修复发票重复扣款。变更：invoice/service.py 幂等键生成逻辑（diff 见附件）、test_invoice_idempotency.py 新增 3 个用例全部通过（pytest 输出：3 passed）、支付流水核对记录。验收项：1. 重复扣款不再发生 ✓（测试覆盖）2. 流水核对完成 ✓"}
+{"state_hash": "dba9180a00ddf7dc", "lang": "zh", "source": "synthetic-zh", "state": "修复了重复扣款问题，测试都通过了，没问题，请验收。"}
+{"state_hash": "23c0a9b476109b8d", "lang": "zh", "source": "synthetic-zh", "state": "新增导出功能。CSV 导出已实现并有测试覆盖（test_export_csv.py 4 passed）；PDF 导出尚未开始。验收项：1. CSV 导出 ✓ 2. PDF 导出（未开始）"}
+{"state_hash": "fc902c2be4320e2f", "lang": "zh", "source": "synthetic-zh", "state": "```diff\n+/// 批量上限：超限分批排队，不截断\n+const BATCH_LIMIT: usize = 250;\n+// 凭据预检：高置信锚点直接阻断该批\n+fn preflight(batch: &[Record]) -> Result<()> {\n+    for r in batch {\n+        if credential_anchor(r) { return Err(Blocked); }\n+    }\n+    Ok(())\n+}\n```\n新增测试：test_preflight_blocked.py 覆盖 3 个锚点用例全部通过。"}
+{"state_hash": "cff57df59a3294d5", "lang": "zh", "source": "synthetic-zh", "state": "用户反映登录后白屏。已收集：浏览器控制台报错截图、Safari 17 复现步骤、复现率 100%。初步定位：路由守卫里未 await 权限查询。修复分支 fix/login-white-screen，含单元测试 2 个通过。"}
+{"state_hash": "052fd1c8f2e8d969", "lang": "zh", "source": "synthetic-zh", "state": "性能优化完成，页面快了很多，体验明显提升。"}
+{"state_hash": "8c7d4490fea45dbe", "lang": "zh", "source": "synthetic-zh", "state": "数据库迁移完成。执行记录：alembic upgrade head → 12 revisions applied (took 3.4s)；回滚验证：alembic downgrade -1 → OK。变更文件：migrations/versions/a1b2c3.py"}
+{"state_hash": "4f85a191d282eb30", "lang": "zh", "source": "synthetic-zh", "state": "Fix: 修复了 timeout 问题。代码里的中文注释：超时时间从 5s 改为 30s。测试：test_timeout.py 2 passed。"}
+{"state_hash": "3487facb168d0d1d", "lang": "zh", "source": "synthetic-zh", "state": "XSS 修复：user_content.html 模板里 {{ user.name }} 改为 {{ user.name | e }}；新增 test_xss_escape.py 覆盖 4 个注入向量全部通过；Burp 复测无告警。验收项：1. 注入向量全阻断 ✓ 2. 复测干净 ✓"}
+{"state_hash": "6ee4ddadd003f9f8", "lang": "zh", "source": "synthetic-zh", "state": "更新 API 文档：新增 /v1/jobs 端点说明（含请求/响应示例、错误码表）；改动 14 个端点的参数表。验收：文档构建 mkdocs build 无 warning。"}

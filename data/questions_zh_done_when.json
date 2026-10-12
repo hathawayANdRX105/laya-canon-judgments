@@ -1,0 +1,22 @@
+{
+  "default_fail": 0.85,
+  "default_warn": 0.5,
+  "evidence_sufficient": {
+    "type": "noul",
+    "instructions": "证据是否足以判断验收项已满足（真实代码、测试或命令输出，而非空洞声称）？",
+    "criteria": {"true": "证据为空、含糊或仅有声称", "false": "存在具体证据"},
+    "fail": 0.9,
+    "warn": 0.6
+  },
+  "verdict": {
+    "type": "choice",
+    "instructions": "给定证据，此事项的完成性质是什么？",
+    "criteria": {
+      "all_done": "每个验收项都被证据证明",
+      "some_pending": "至少一项未被证明",
+      "not_started": "证据与验收项完全不对应"
+    },
+    "fail": 0.85,
+    "warn": 0.5
+  }
+}

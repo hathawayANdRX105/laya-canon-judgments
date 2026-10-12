@@ -1,7 +1,5 @@
-# raw data and generated artifacts
+# large/generated artifacts (seed dataset itself is committed)
 data/raw/
-data/rows.jsonl
-data/splits/*.jsonl
 *.pt
 *.safetensors
 checkpoints/

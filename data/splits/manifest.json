@@ -1,0 +1,19 @@
+{
+  "seed": 42,
+  "ratios": [
+    0.8,
+    0.1,
+    0.1
+  ],
+  "group_key": "state_hash",
+  "groups_per_split": {
+    "train": 46,
+    "validation": 6,
+    "test": 6
+  },
+  "rows_per_split": {
+    "train": 46,
+    "validation": 6,
+    "test": 6
+  }
+}

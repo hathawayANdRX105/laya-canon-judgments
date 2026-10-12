@@ -64,6 +64,34 @@
 4. **验收**（在 **test** 上报，一次性）：accuracy、ECE、option-order
    flip rate <10%
 
+
+### 5.1 实际命令（已验证的接口）
+
+数据在本仓库，训练在 laya 仓库跑（驱动 `research/scripts/finetune_single_device.py`
+单设备复现 2xT4 训练循环：预处理 → RLCD → 每题型拟合一个校准温度 → 存可加载
+checkpoint）：
+
+```bash
+cd ~/projects/laya
+HF_HUB_OFFLINE=1 .venv/bin/python research/scripts/finetune_single_device.py \
+    --data ~/projects/laya-canon-judgments/data/splits/train.jsonl \
+    --model-dir ~/.cache/huggingface/hub/models--convaiinnovations--laya/snapshots/a9597e0e438d6971d2eb6742d7d8610cefd9f262/multilingual \
+    --output-dir ~/projects/laya-canon-judgments/results/finetune-v1 \
+    --device cuda --epochs 4 --seed 42
+```
+
+驱动内部在训练前从训练集切出校准片（≤400 条或 10%，固定 seed，不参与训练），
+与 §4 的划分纪律一致。验收用 `laya-evals` 跑 test 划分（行内 `expected` 即
+laya-evals 的读法）：
+
+```bash
+.venv/bin/laya-evals --data ~/projects/laya-canon-judgments/data/splits/test.jsonl \
+    --model-dir ~/projects/laya-canon-judgments/results/finetune-v1
+```
+
+验收通过后才注册进 laya-serve（`LAYA_EXTRA_MODELS`），路由表加语言→新模型映射，
+gate 的 `JEV_MODEL=auto` 渐进切到新 checkpoint；不过关则留在实验区，gate 继续
+走现有三 checkpoint。
 ## 6. Kaggle 免费 GPU 使用法
 
 - **额度**：30 GPU-h/周（2xT4 或 P100）；TPU v3-8 亦有；CPU 无周配额
