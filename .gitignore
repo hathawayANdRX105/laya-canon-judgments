@@ -5,3 +5,6 @@ data/raw/
 checkpoints/
 results/*.json
 __pycache__/
+
+# pulled from Kaggle kernels (artifacts, not source)
+out/
