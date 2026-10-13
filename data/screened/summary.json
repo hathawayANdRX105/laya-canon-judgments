@@ -1,8 +1,8 @@
 {
-  "pool_states": 5086,
+  "pool_states": 5103,
   "per_repo_generated": {
     "canon": {
-      "zh": 155,
+      "zh": 156,
       "en": 21
     },
     "herdr": {
@@ -18,7 +18,7 @@
       "en": 20
     },
     "mono": {
-      "zh": 155,
+      "zh": 161,
       "en": 25
     },
     "ui-kit": {
@@ -66,16 +66,16 @@
       "en": 1
     },
     "laya-canon-judgments": {
-      "zh": 9,
-      "en": 8
+      "en": 10,
+      "zh": 10
     },
     "oh-my-pi": {
       "en": 180,
       "zh": 23
     },
     "ferrite-ci": {
-      "zh": 8,
-      "en": 1
+      "zh": 14,
+      "en": 2
     },
     "ferrite-ci-pr": {
       "zh": 9,
@@ -101,29 +101,29 @@
       "zh": 20
     }
   },
-  "candidates_after_dedup": 4013,
-  "dup_in_pool": 1025,
+  "candidates_after_dedup": 4029,
+  "dup_in_pool": 1026,
   "dup_already_trained": 48,
-  "kept": 559,
-  "rejected": 3454,
+  "kept": 578,
+  "rejected": 3451,
   "reject_reasons": {
-    "weak-gold": 3378,
-    "error": 76
+    "weak-gold": 3436,
+    "error": 15
   },
   "kept_by_lang": {
-    "zh": 294,
-    "en": 265
+    "zh": 304,
+    "en": 274
   },
   "rejected_by_lang": {
-    "zh": 1703,
-    "en": 1751
+    "zh": 1706,
+    "en": 1745
   },
   "kept_by_repo": {
     "canon": 15,
     "herdr": 100,
     "ferrite-legacy": 29,
     "kymido": 28,
-    "mono": 27,
+    "mono": 28,
     "ui-kit": 43,
     "novel": 25,
     "kime": 20,
@@ -139,14 +139,15 @@
     "ferrite-ci": 1,
     "ricq": 1,
     "ainotation": 3,
-    "new-api": 162
+    "new-api": 172,
+    "newapi-xiaocongyu": 8
   },
-  "kept_truncated_at_cap": 106,
+  "kept_truncated_at_cap": 108,
   "kept_verdict_confidence": {
     "min": 0.6002,
     "p50": 0.7064,
-    "mean": 0.722590161001789
+    "mean": 0.722643598615917
   },
   "existing_rows": 58,
-  "total_rows_if_added": 617
+  "total_rows_if_added": 636
 }
