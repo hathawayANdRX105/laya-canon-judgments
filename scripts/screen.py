@@ -49,13 +49,16 @@ NOUL_MARGIN = 0.15
 # Repos that add diverse, on-domain code-change states. The
 # new-api family is skipped: one proxy codebase cloned four
 # times, so its diffs are near-duplicates of each other.
+# Caps sample the newest N first-parent commits (0 = all).
 REPOS = [
-    ("canon", 0), ("herdr", 150), ("ferrite-legacy", 100),
-    ("kymido", 100), ("mono", 0), ("ui-kit", 0),
-    ("novel", 80), ("kime", 80), ("wildtoken", 80),
-    ("dotfiles", 80), ("sightline", 0), ("silverq", 0),
+    ("canon", 0), ("herdr", 400), ("ferrite-legacy", 200),
+    ("kymido", 200), ("mono", 0), ("ui-kit", 0),
+    ("novel", 100), ("kime", 100), ("wildtoken", 150),
+    ("dotfiles", 150), ("sightline", 0), ("silverq", 0),
     ("sentinel", 0), ("deskctl", 0), ("gugu", 0),
     ("algorchemy", 0), ("laya-canon-judgments", 0),
+    ("oh-my-pi", 300), ("ferrite-ci", 0), ("ferrite-ci-pr", 0),
+    ("ricq", 0), ("ainotation", 0),
 ]
 PROJECTS = Path("/home/hathaway/projects")
 
@@ -148,6 +151,10 @@ def main() -> None:
     ap.add_argument("--key", default="laya-local")
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--out-dir", default="data/screened")
+    ap.add_argument("--resume",
+                    default="data/screened/.eval-cache.json",
+                    help="evaluated-states checkpoint; a rerun "
+                         "resumes from it (empty disables)")
     args = ap.parse_args()
 
     root = Path(__file__).resolve().parent.parent
@@ -193,12 +200,28 @@ def main() -> None:
     log(f"stage 2: dedup -> {len(candidates)} candidates "
         f"({dup_pool} in-pool dups, {dup_existing} already-trained)")
 
-    # Stage 3: laya evaluation (threaded)
-    log(f"stage 3: evaluating {len(candidates)} states "
-        f"with laya ({args.workers} workers)")
-    results = {}
-    errors = {}
+    # Stage 3: laya evaluation (threaded, checkpointed)
+    cache = (root / args.resume) if args.resume else None
+    results, errors = {}, {}
+    if cache and cache.exists():
+        blob = json.loads(cache.read_text())
+        results = blob.get("results", {})
+        errors = blob.get("errors", {})
+    todo = [r for r in candidates
+            if r["state_hash"] not in results
+            and r["state_hash"] not in errors]
+    log(f"stage 3: evaluating {len(todo)} states with laya "
+        f"({args.workers} workers, "
+        f"{len(candidates) - len(todo)} cached)")
     done = [0]
+    cache_lock = threading.Lock()
+
+    def save_cache() -> None:
+        if not cache:
+            return
+        with cache_lock:
+            cache.write_text(json.dumps(
+                {"results": results, "errors": errors}))
 
     def evaluate(r: dict) -> None:
         try:
@@ -214,12 +237,14 @@ def main() -> None:
         except Exception as exc:  # HTTPError, timeouts, bad payloads
             errors[r["state_hash"]] = f"{type(exc).__name__}: {exc}"
         done[0] += 1
-        if done[0] % 50 == 0:
-            log(f"  evaluated {done[0]}/{len(candidates)}")
+        if done[0] % 25 == 0:
+            save_cache()
+            log(f"  evaluated {done[0]}/{len(todo)}")
 
     t0 = time.time()
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
-        list(ex.map(evaluate, candidates))
+        list(ex.map(evaluate, todo))
+    save_cache()
     log(f"stage 3: done in {time.time()-t0:.0f}s "
         f"({len(results)} ok, {len(errors)} errors)")
 
@@ -244,7 +269,8 @@ def main() -> None:
             weak.append(f"noul |p-0.5|={conf['evidence_sufficient']:.3f}")
         if weak:
             out.append({**r, "reason": "weak-gold",
-                        "detail": "; ".join(weak)})
+                        "detail": "; ".join(weak),
+                        "confidence": conf})
             continue
         if len(r["state"]) >= MAX_CHARS:
             truncated += 1

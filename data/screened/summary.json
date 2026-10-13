@@ -1,45 +1,45 @@
 {
-  "pool_states": 1322,
+  "pool_states": 2187,
   "per_repo_generated": {
     "canon": {
-      "zh": 154,
+      "zh": 155,
       "en": 21
     },
     "herdr": {
-      "zh": 27,
-      "en": 123
+      "zh": 68,
+      "en": 332
     },
     "ferrite-legacy": {
-      "zh": 81,
-      "en": 9
+      "zh": 176,
+      "en": 13
     },
     "kymido": {
-      "zh": 76,
-      "en": 10
+      "zh": 166,
+      "en": 20
     },
     "mono": {
-      "zh": 141,
-      "en": 21
+      "zh": 145,
+      "en": 23
     },
     "ui-kit": {
       "zh": 109,
       "en": 8
     },
     "novel": {
-      "zh": 72,
+      "zh": 92,
       "en": 5
     },
     "kime": {
-      "zh": 57,
-      "en": 13
+      "zh": 73,
+      "en": 16
     },
     "wildtoken": {
-      "en": 53,
-      "zh": 25
+      "en": 75,
+      "zh": 68
     },
     "dotfiles": {
-      "zh": 60,
-      "en": 19
+      "zh": 102,
+      "en": 47
     },
     "sightline": {
       "zh": 9,
@@ -66,50 +66,73 @@
       "en": 1
     },
     "laya-canon-judgments": {
-      "zh": 7,
+      "zh": 8,
       "en": 8
+    },
+    "oh-my-pi": {
+      "en": 180,
+      "zh": 23
+    },
+    "ferrite-ci": {
+      "zh": 8,
+      "en": 1
+    },
+    "ferrite-ci-pr": {
+      "zh": 9,
+      "en": 1
+    },
+    "ricq": {
+      "zh": 6,
+      "en": 1
+    },
+    "ainotation": {
+      "zh": 5
     }
   },
-  "candidates_after_dedup": 1285,
-  "dup_in_pool": 37,
+  "candidates_after_dedup": 2140,
+  "dup_in_pool": 47,
   "dup_already_trained": 0,
-  "kept": 215,
-  "rejected": 1070,
+  "kept": 311,
+  "rejected": 1829,
   "reject_reasons": {
-    "weak-gold": 1070
+    "weak-gold": 1829
   },
   "kept_by_lang": {
-    "zh": 160,
-    "en": 55
+    "zh": 212,
+    "en": 99
   },
   "rejected_by_lang": {
-    "zh": 798,
-    "en": 272
+    "zh": 1141,
+    "en": 688
   },
   "kept_by_repo": {
     "canon": 15,
-    "herdr": 8,
-    "ferrite-legacy": 11,
-    "kymido": 18,
+    "herdr": 15,
+    "ferrite-legacy": 29,
+    "kymido": 28,
     "mono": 26,
     "ui-kit": 43,
-    "novel": 18,
-    "kime": 17,
-    "wildtoken": 3,
-    "dotfiles": 19,
+    "novel": 25,
+    "kime": 20,
+    "wildtoken": 13,
+    "dotfiles": 33,
     "sightline": 5,
     "silverq": 17,
     "sentinel": 2,
     "deskctl": 7,
     "gugu": 4,
-    "algorchemy": 2
+    "algorchemy": 2,
+    "oh-my-pi": 22,
+    "ferrite-ci": 1,
+    "ricq": 1,
+    "ainotation": 3
   },
-  "kept_truncated_at_cap": 51,
+  "kept_truncated_at_cap": 77,
   "kept_verdict_confidence": {
     "min": 0.6002,
-    "p50": 0.7052,
-    "mean": 0.7191348837209303
+    "p50": 0.7076,
+    "mean": 0.7203057877813505
   },
   "existing_rows": 58,
-  "total_rows_if_added": 273
+  "total_rows_if_added": 369
 }
