@@ -136,6 +136,24 @@ held-out test 验收（6 状态组，in-container
 | ECE | 0.2714 | 0.3414（变差） |
 | Brier | 0.0902 | 0.1331（变差） |
 
+分语言（cases 按行序 join 回数据集 `lang`；test
+划分 5 zh / 1 en，en 侧仅 2 个 case，统计意义弱）：
+
+| 语言 | n | base acc / Brier | finetuned acc / Brier |
+|---|---|---|---|
+| en | 2 | 1.0 / 0.2078 | 1.0 / 0.2586（变差） |
+| zh | 10 | 1.0 / 0.1180 | 1.0 / 0.1736（变差） |
+
+两侧 accuracy 均 1.0（无遗忘，训练 23/23 平衡），
+校准两侧对称变差。注：zh gold 由 multilingual
+checkpoint 自蒸（base 测自己近平凡 1.0）；en
+gold 来自 typed-decisions，base 的 en 1.0 是更
+有意义但极弱的信号（§2 的英文天花板 ~10pp 仍
+需更多 en test 组验证）。**划分纪律补充**：按
+语言分层（本轮随机组划分给出 5/1，对双语验收
+不友好）；扩数据时 en/zh 同步扩，test 两侧都
+要有足够组数。
+
 与本地 §7.1 同方向：精度顶格无回归，校准倒退——
 83 条训练项不足以超越预训练 head。**结论：不替换
 现有设置**，checkpoint 留实验区；下一轮先扩数据
