@@ -1,0 +1,115 @@
+{
+  "pool_states": 1322,
+  "per_repo_generated": {
+    "canon": {
+      "zh": 154,
+      "en": 21
+    },
+    "herdr": {
+      "zh": 27,
+      "en": 123
+    },
+    "ferrite-legacy": {
+      "zh": 81,
+      "en": 9
+    },
+    "kymido": {
+      "zh": 76,
+      "en": 10
+    },
+    "mono": {
+      "zh": 141,
+      "en": 21
+    },
+    "ui-kit": {
+      "zh": 109,
+      "en": 8
+    },
+    "novel": {
+      "zh": 72,
+      "en": 5
+    },
+    "kime": {
+      "zh": 57,
+      "en": 13
+    },
+    "wildtoken": {
+      "en": 53,
+      "zh": 25
+    },
+    "dotfiles": {
+      "zh": 60,
+      "en": 19
+    },
+    "sightline": {
+      "zh": 9,
+      "en": 4
+    },
+    "silverq": {
+      "zh": 68,
+      "en": 10
+    },
+    "sentinel": {
+      "zh": 17,
+      "en": 4
+    },
+    "deskctl": {
+      "zh": 37,
+      "en": 16
+    },
+    "gugu": {
+      "zh": 31,
+      "en": 2
+    },
+    "algorchemy": {
+      "zh": 24,
+      "en": 1
+    },
+    "laya-canon-judgments": {
+      "zh": 7,
+      "en": 8
+    }
+  },
+  "candidates_after_dedup": 1285,
+  "dup_in_pool": 37,
+  "dup_already_trained": 0,
+  "kept": 215,
+  "rejected": 1070,
+  "reject_reasons": {
+    "weak-gold": 1070
+  },
+  "kept_by_lang": {
+    "zh": 160,
+    "en": 55
+  },
+  "rejected_by_lang": {
+    "zh": 798,
+    "en": 272
+  },
+  "kept_by_repo": {
+    "canon": 15,
+    "herdr": 8,
+    "ferrite-legacy": 11,
+    "kymido": 18,
+    "mono": 26,
+    "ui-kit": 43,
+    "novel": 18,
+    "kime": 17,
+    "wildtoken": 3,
+    "dotfiles": 19,
+    "sightline": 5,
+    "silverq": 17,
+    "sentinel": 2,
+    "deskctl": 7,
+    "gugu": 4,
+    "algorchemy": 2
+  },
+  "kept_truncated_at_cap": 51,
+  "kept_verdict_confidence": {
+    "min": 0.6002,
+    "p50": 0.7052,
+    "mean": 0.7191348837209303
+  },
+  "existing_rows": 58,
+  "total_rows_if_added": 273
+}
