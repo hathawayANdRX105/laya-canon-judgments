@@ -1,13 +1,13 @@
 {
-  "pool_states": 2187,
+  "pool_states": 5086,
   "per_repo_generated": {
     "canon": {
       "zh": 155,
       "en": 21
     },
     "herdr": {
-      "zh": 68,
-      "en": 332
+      "zh": 127,
+      "en": 1072
     },
     "ferrite-legacy": {
       "zh": 176,
@@ -18,8 +18,8 @@
       "en": 20
     },
     "mono": {
-      "zh": 145,
-      "en": 23
+      "zh": 155,
+      "en": 25
     },
     "ui-kit": {
       "zh": 109,
@@ -66,7 +66,7 @@
       "en": 1
     },
     "laya-canon-judgments": {
-      "zh": 8,
+      "zh": 9,
       "en": 8
     },
     "oh-my-pi": {
@@ -87,30 +87,43 @@
     },
     "ainotation": {
       "zh": 5
+    },
+    "new-api": {
+      "zh": 558,
+      "en": 455
+    },
+    "newapi-xiaocongyu": {
+      "en": 477,
+      "zh": 549
+    },
+    "mnemo2u": {
+      "en": 28,
+      "zh": 20
     }
   },
-  "candidates_after_dedup": 2140,
-  "dup_in_pool": 47,
-  "dup_already_trained": 0,
-  "kept": 311,
-  "rejected": 1829,
+  "candidates_after_dedup": 4013,
+  "dup_in_pool": 1025,
+  "dup_already_trained": 48,
+  "kept": 559,
+  "rejected": 3454,
   "reject_reasons": {
-    "weak-gold": 1829
+    "weak-gold": 3378,
+    "error": 76
   },
   "kept_by_lang": {
-    "zh": 212,
-    "en": 99
+    "zh": 294,
+    "en": 265
   },
   "rejected_by_lang": {
-    "zh": 1141,
-    "en": 688
+    "zh": 1703,
+    "en": 1751
   },
   "kept_by_repo": {
     "canon": 15,
-    "herdr": 15,
+    "herdr": 100,
     "ferrite-legacy": 29,
     "kymido": 28,
-    "mono": 26,
+    "mono": 27,
     "ui-kit": 43,
     "novel": 25,
     "kime": 20,
@@ -125,14 +138,15 @@
     "oh-my-pi": 22,
     "ferrite-ci": 1,
     "ricq": 1,
-    "ainotation": 3
+    "ainotation": 3,
+    "new-api": 162
   },
-  "kept_truncated_at_cap": 77,
+  "kept_truncated_at_cap": 106,
   "kept_verdict_confidence": {
     "min": 0.6002,
-    "p50": 0.7076,
-    "mean": 0.7203057877813505
+    "p50": 0.7064,
+    "mean": 0.722590161001789
   },
   "existing_rows": 58,
-  "total_rows_if_added": 369
+  "total_rows_if_added": 617
 }
