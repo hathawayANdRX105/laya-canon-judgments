@@ -8,3 +8,7 @@ __pycache__/
 
 # pulled from Kaggle kernels (artifacts, not source)
 out/
+
+# local screening state (checkpoint + full audit trail)
+data/screened/.eval-cache.json
+data/screened/out.jsonl

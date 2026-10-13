@@ -40,6 +40,9 @@ from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
+from jevclient import (ask_jev, confidence_of, gate_questions,
+                       gold_from_answers)
+
 HAN = re.compile("[一-鿿]")
 MAX_CHARS = 30000
 MIN_STATE_CHARS = 80
@@ -51,7 +54,7 @@ NOUL_MARGIN = 0.15
 # times, so its diffs are near-duplicates of each other.
 # Caps sample the newest N first-parent commits (0 = all).
 REPOS = [
-    ("canon", 0), ("herdr", 400), ("ferrite-legacy", 200),
+    ("canon", 0), ("herdr", 1200), ("ferrite-legacy", 200),
     ("kymido", 200), ("mono", 0), ("ui-kit", 0),
     ("novel", 100), ("kime", 100), ("wildtoken", 150),
     ("dotfiles", 150), ("sightline", 0), ("silverq", 0),
@@ -59,6 +62,8 @@ REPOS = [
     ("algorchemy", 0), ("laya-canon-judgments", 0),
     ("oh-my-pi", 300), ("ferrite-ci", 0), ("ferrite-ci-pr", 0),
     ("ricq", 0), ("ainotation", 0),
+    ("new-api", 1500), ("newapi-xiaocongyu", 1500),
+    ("mnemo2u", 0),
 ]
 PROJECTS = Path("/home/hathaway/projects")
 
@@ -98,53 +103,6 @@ def gen_states(repo: Path, limit: int) -> list[dict]:
     return rows
 
 
-def ask_jev(api: str, key: str, state: str, questions: dict) -> dict:
-    payload = json.dumps(
-        {"state": state, "model": "auto", "questions": questions}
-    ).encode()
-    req = urllib.request.Request(
-        f"{api.rstrip('/')}/v1/systemone", data=payload,
-        headers={"Authorization": f"Bearer {key}",
-                 "x-api-key": key,
-                 "Content-Type": "application/json"},
-        method="POST",
-    )
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        return json.loads(resp.read().decode())
-
-
-def gate_questions(qfile: dict) -> dict:
-    return {k: v for k, v in qfile.items()
-            if isinstance(v, dict) and "type" in v}
-
-
-def gold_from_answers(questions: dict, answers: dict) -> dict:
-    gold = {}
-    for qid, ans in (answers or {}).items():
-        if ans.get("type") == "noul":
-            p = float(ans.get("noul", 0.0))
-            gold[qid] = {"probabilities": {
-                "true": round(p, 6), "false": round(1.0 - p, 6)}}
-        elif ans.get("type") == "choice":
-            gold[qid] = {"probabilities": ans.get("probabilities", {})}
-    return gold
-
-
-def confidence_of(gold: dict) -> dict:
-    """Per-question gold confidence: max prob for choice,
-    distance from the coin flip for noul."""
-    out = {}
-    for qid, dist in gold.items():
-        probs = dist.get("probabilities", {})
-        if not probs:
-            out[qid] = 0.0
-        elif len(probs) == 2 and set(probs) == {"true", "false"}:
-            out[qid] = abs(probs["true"] - 0.5)
-        else:
-            out[qid] = max(probs.values())
-    return out
-
-
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--api", default="http://127.0.0.1:8000")
@@ -155,9 +113,30 @@ def main() -> None:
                     default="data/screened/.eval-cache.json",
                     help="evaluated-states checkpoint; a rerun "
                          "resumes from it (empty disables)")
+    ap.add_argument("--export-pending", default="",
+                    help="write the not-yet-evaluated states to this "
+                         "JSONL and exit (for CI evaluation)")
+    ap.add_argument("--merge-fragment", default="",
+                    help="merge a CI cache fragment into --resume and "
+                         "exit")
     args = ap.parse_args()
 
     root = Path(__file__).resolve().parent.parent
+    if args.merge_fragment:
+        if not args.resume:
+            sys.exit("--merge-fragment needs --resume (cache path)")
+        cache_path = root / args.resume
+        frag = json.loads((root / args.merge_fragment).read_text())
+        blob = (json.loads(cache_path.read_text())
+                if cache_path.exists() else {"results": {}, "errors": {}})
+        blob["results"].update(frag.get("results", {}))
+        for h in frag.get("results", {}):
+            blob["errors"].pop(h, None)
+        blob["errors"].update(frag.get("errors", {}))
+        cache_path.write_text(json.dumps(blob))
+        log(f"merged {args.merge_fragment}: {len(blob['results'])} results, "
+            f"{len(blob['errors'])} errors -> {args.resume}")
+        return
     questions = {
         "en": gate_questions(json.loads(
             (root / "data/questions_en_done_when.json").read_text())),
@@ -213,6 +192,16 @@ def main() -> None:
     log(f"stage 3: evaluating {len(todo)} states with laya "
         f"({args.workers} workers, "
         f"{len(candidates) - len(todo)} cached)")
+    if args.export_pending:
+        pend = [r for r in candidates
+                if r["state_hash"] not in results]
+        out = root / args.export_pending
+        out.write_text("".join(
+            json.dumps({k: r[k] for k in
+                        ("state_hash", "source", "lang", "state")}) + "\n"
+            for r in pend))
+        log(f"exported {len(pend)} pending states -> {args.export_pending}")
+        return
     done = [0]
     cache_lock = threading.Lock()
 
