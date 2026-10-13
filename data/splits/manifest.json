@@ -7,13 +7,13 @@
   ],
   "group_key": "state_hash",
   "groups_per_split": {
-    "train": 46,
-    "validation": 6,
-    "test": 6
+    "train": 509,
+    "validation": 64,
+    "test": 63
   },
   "rows_per_split": {
-    "train": 46,
-    "validation": 6,
-    "test": 6
+    "train": 509,
+    "validation": 64,
+    "test": 63
   }
 }
