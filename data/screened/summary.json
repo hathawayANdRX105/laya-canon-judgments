@@ -107,8 +107,7 @@
   "kept": 578,
   "rejected": 3451,
   "reject_reasons": {
-    "weak-gold": 3436,
-    "error": 15
+    "weak-gold": 3451
   },
   "kept_by_lang": {
     "zh": 304,
