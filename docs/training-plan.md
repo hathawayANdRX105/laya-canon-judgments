@@ -117,6 +117,35 @@ Kaggle 2xT4 上跑**（§6），本机只做 head-only 与数据管线。
 多语言数据注意：同一 qid 的 en/zh question 定义（instructions /
 criteria 文本）冲突时预处理器保留首个——正式数据集应按 qid 规范化
 定义（内部形式 type + 选项键与语言无关，文本差异不进训练输入）。
+
+## 7.2 Kaggle 轮（2026-10-13，head-only，2xT4）
+
+base = a9597e0 重构：权重 + tokenizer.json 与当前
+main 的 LFS blob 字节相同（repo 历史重写只改了配置
+文件，旧 commit 不可达）；3 个 a9597e0 配置文件经
+jsdelivr 从本仓库 overlay。重构忠实性由 before 校准
+指标与本地逐位一致验证（acc 0.8889 / loss 0.9906 /
+ECE 0.4218 / Brier 0.0945）。head-only RLCD
+（freeze_encoder，83 items / 46 组，seed 42）→
+held-out test 验收（6 状态组，in-container
+`Router(models=...)` 评估，`results/kaggle-v8/`）：
+
+| 指标 | base | head-only fine-tuned |
+|---|---|---|
+| choice / noul accuracy | 1.0 / 1.0 | 1.0 / 1.0 |
+| ECE | 0.2714 | 0.3414（变差） |
+| Brier | 0.0902 | 0.1331（变差） |
+
+与本地 §7.1 同方向：精度顶格无回归，校准倒退——
+83 条训练项不足以超越预训练 head。**结论：不替换
+现有设置**，checkpoint 留实验区；下一轮先扩数据
+（§3：几千条）再训。
+
+注：Kaggle API 触发的运行拿不到 notebook secrets
+（HF_TOKEN 未注入，UserSecretsClient 服务不可达）——
+checkpoint 未推 HF；要持久化需在 UI 里交互重跑本
+notebook。
+
 ## 6. Kaggle 免费 GPU 使用法
 
 - **额度**：30 GPU-h/周（2xT4 或 P100）；TPU v3-8 亦有；CPU 无周配额

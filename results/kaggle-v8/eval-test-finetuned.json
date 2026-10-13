@@ -1,0 +1,393 @@
+{
+  "cases": [
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.6972,
+        "confidence": 0.6972,
+        "noul": 0.6972,
+        "type": "noul"
+      },
+      "confidence": 0.6972,
+      "correct": true,
+      "expected": true,
+      "language": null,
+      "model": "finetuned",
+      "qid": "evidence_sufficient",
+      "scores": {
+        "choice_accuracy": null,
+        "mean_confidence": 0.6972,
+        "noul_accuracy": 1.0,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.51,
+        "choice": "some_pending",
+        "confidence": 0.0738,
+        "probabilities": {
+          "all_done": 0.1845,
+          "not_started": 0.3054,
+          "some_pending": 0.51
+        },
+        "type": "choice"
+      },
+      "confidence": 0.51,
+      "correct": true,
+      "expected": "some_pending",
+      "language": null,
+      "model": "finetuned",
+      "qid": "verdict",
+      "scores": {
+        "choice_accuracy": 1.0,
+        "mean_confidence": 0.51,
+        "noul_accuracy": null,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.8132,
+        "confidence": 0.8132,
+        "noul": 0.8132,
+        "type": "noul"
+      },
+      "confidence": 0.8132,
+      "correct": true,
+      "expected": true,
+      "language": null,
+      "model": "finetuned",
+      "qid": "evidence_sufficient",
+      "scores": {
+        "choice_accuracy": null,
+        "mean_confidence": 0.8132,
+        "noul_accuracy": 1.0,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.4767,
+        "choice": "some_pending",
+        "confidence": 0.057,
+        "probabilities": {
+          "all_done": 0.1918,
+          "not_started": 0.3315,
+          "some_pending": 0.4767
+        },
+        "type": "choice"
+      },
+      "confidence": 0.4767,
+      "correct": true,
+      "expected": "some_pending",
+      "language": null,
+      "model": "finetuned",
+      "qid": "verdict",
+      "scores": {
+        "choice_accuracy": 1.0,
+        "mean_confidence": 0.4767,
+        "noul_accuracy": null,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.6551,
+        "confidence": 0.6551,
+        "noul": 0.6551,
+        "type": "noul"
+      },
+      "confidence": 0.6551,
+      "correct": true,
+      "expected": true,
+      "language": null,
+      "model": "finetuned",
+      "qid": "evidence_sufficient",
+      "scores": {
+        "choice_accuracy": null,
+        "mean_confidence": 0.6551,
+        "noul_accuracy": 1.0,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.5023,
+        "choice": "some_pending",
+        "confidence": 0.1057,
+        "probabilities": {
+          "all_done": 0.1335,
+          "not_started": 0.3643,
+          "some_pending": 0.5023
+        },
+        "type": "choice"
+      },
+      "confidence": 0.5023,
+      "correct": true,
+      "expected": "some_pending",
+      "language": null,
+      "model": "finetuned",
+      "qid": "verdict",
+      "scores": {
+        "choice_accuracy": 1.0,
+        "mean_confidence": 0.5023,
+        "noul_accuracy": null,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.7511,
+        "confidence": 0.7511,
+        "noul": 0.7511,
+        "type": "noul"
+      },
+      "confidence": 0.7511,
+      "correct": true,
+      "expected": true,
+      "language": null,
+      "model": "finetuned",
+      "qid": "evidence_sufficient",
+      "scores": {
+        "choice_accuracy": null,
+        "mean_confidence": 0.7511,
+        "noul_accuracy": 1.0,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.8246,
+        "choice": "all_done",
+        "confidence": 0.4719,
+        "probabilities": {
+          "all_done": 0.8246,
+          "not_started": 0.1102,
+          "some_pending": 0.0652
+        },
+        "type": "choice"
+      },
+      "confidence": 0.8246,
+      "correct": true,
+      "expected": "all_done",
+      "language": null,
+      "model": "finetuned",
+      "qid": "verdict",
+      "scores": {
+        "choice_accuracy": 1.0,
+        "mean_confidence": 0.8246,
+        "noul_accuracy": null,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.7368,
+        "confidence": 0.7368,
+        "noul": 0.7368,
+        "type": "noul"
+      },
+      "confidence": 0.7368,
+      "correct": true,
+      "expected": true,
+      "language": null,
+      "model": "finetuned",
+      "qid": "evidence_sufficient",
+      "scores": {
+        "choice_accuracy": null,
+        "mean_confidence": 0.7368,
+        "noul_accuracy": 1.0,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.5639,
+        "choice": "some_pending",
+        "confidence": 0.1179,
+        "probabilities": {
+          "all_done": 0.1555,
+          "not_started": 0.2805,
+          "some_pending": 0.5639
+        },
+        "type": "choice"
+      },
+      "confidence": 0.5639,
+      "correct": true,
+      "expected": "some_pending",
+      "language": null,
+      "model": "finetuned",
+      "qid": "verdict",
+      "scores": {
+        "choice_accuracy": 1.0,
+        "mean_confidence": 0.5639,
+        "noul_accuracy": null,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.8288,
+        "confidence": 0.8288,
+        "noul": 0.8288,
+        "type": "noul"
+      },
+      "confidence": 0.8288,
+      "correct": true,
+      "expected": true,
+      "language": null,
+      "model": "finetuned",
+      "qid": "evidence_sufficient",
+      "scores": {
+        "choice_accuracy": null,
+        "mean_confidence": 0.8288,
+        "noul_accuracy": 1.0,
+        "score_mae": null
+      },
+      "tags": []
+    },
+    {
+      "answer": {
+        "action": {
+          "act_probability": 1.0
+        },
+        "answer_confidence": 0.5439,
+        "choice": "some_pending",
+        "confidence": 0.1033,
+        "probabilities": {
+          "all_done": 0.1606,
+          "not_started": 0.2954,
+          "some_pending": 0.5439
+        },
+        "type": "choice"
+      },
+      "confidence": 0.5439,
+      "correct": true,
+      "expected": "some_pending",
+      "language": null,
+      "model": "finetuned",
+      "qid": "verdict",
+      "scores": {
+        "choice_accuracy": 1.0,
+        "mean_confidence": 0.5439,
+        "noul_accuracy": null,
+        "score_mae": null
+      },
+      "tags": []
+    }
+  ],
+  "config": {
+    "coverage_metric_definition": 2,
+    "dataset": "/kaggle/working/splits/test.jsonl",
+    "device": "cuda",
+    "laya_version": "0.4.6",
+    "model": "finetuned",
+    "questions_sha256": "66ba920a30d6bc541e6be9c994ba332f5c32cfe2c09f4bc2eea2bf759d7907b6",
+    "schema": "laya-evals-report/1",
+    "timing": {
+      "batch_form": null,
+      "batch_size": null,
+      "chunks": 6,
+      "cost_metric": "per decision: that call divided by its own chunk size",
+      "latency_metric": "per request: the wall time of the call that returned it, unsplit",
+      "max_chunk": 1,
+      "min_confidence": null,
+      "min_confidence_sent": false,
+      "rows_alone": 6,
+      "rows_grouped": 0,
+      "sort_by_length": false,
+      "sort_by_length_sent": false
+    }
+  },
+  "overall": {
+    "aurc": 0.0,
+    "brier": 0.13305806166666667,
+    "choice_accuracy": 1.0,
+    "cost_per_decision_p50_ms": 72.73023949997537,
+    "cost_per_decision_p95_ms": 5394.249865999996,
+    "ece": 0.3413666666666667,
+    "latency_p50_ms": 72.73023949997537,
+    "latency_p95_ms": 5394.249865999996,
+    "mean_confidence": 0.6586333333333333,
+    "noul_accuracy": 1.0,
+    "selective_accuracy@50": 1.0,
+    "selective_accuracy@80": 1.0
+  },
+  "slices": {
+    "model": {
+      "finetuned": {
+        "aurc": 0.0,
+        "brier": 0.13305806166666667,
+        "choice_accuracy": 1.0,
+        "ece": 0.3413666666666667,
+        "mean_confidence": 0.6586333333333333,
+        "noul_accuracy": 1.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0
+      }
+    },
+    "qid": {
+      "evidence_sufficient": {
+        "aurc": 0.0,
+        "brier": 0.06767883,
+        "ece": 0.2529666666666667,
+        "mean_confidence": 0.7470333333333333,
+        "noul_accuracy": 1.0,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0
+      },
+      "verdict": {
+        "aurc": 0.0,
+        "brier": 0.19843729333333335,
+        "choice_accuracy": 1.0,
+        "ece": 0.42976666666666663,
+        "mean_confidence": 0.5702333333333334,
+        "selective_accuracy@50": 1.0,
+        "selective_accuracy@80": 1.0
+      }
+    }
+  }
+}
